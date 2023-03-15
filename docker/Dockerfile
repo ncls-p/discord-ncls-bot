@@ -11,4 +11,4 @@ EXPOSE 80
 EXPOSE 443
 
 
-CMD yarn serve
+CMD yarn start

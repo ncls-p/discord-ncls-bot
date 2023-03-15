@@ -4,10 +4,11 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install
+RUN yarn
+RUN yarn build
 
 EXPOSE 80
 EXPOSE 443
 
 
-CMD yarn start
+CMD yarn serve

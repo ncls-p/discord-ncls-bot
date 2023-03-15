@@ -1,0 +1,60 @@
+name: Deploy
+
+on: [push]
+
+jobs:
+    uploadFiles:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v1
+
+            - name: Copy repository contents via scp
+              uses: appleboy/scp-action@master
+              env:
+                  HOST: ${{ secrets.HOST }}
+                  USERNAME: ${{ secrets.USERNAME }}
+                  PORT: ${{ secrets.PORT }}
+                  KEY: ${{ secrets.SSHKEY }}
+              with:
+                  source: "."
+                  target: "/home/blury/bot/discord/ncls"
+
+    buildImageBot:
+        needs: uploadFiles
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v1
+
+            - name: Executing remote command
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  port: ${{ secrets.PORT }}
+                  key: ${{ secrets.SSHKEY }}
+                  script: |
+                      cd /home/blury/bot/discord/ncls &&
+                        docker build -f docker/Dockerfile -t discord-bot-ncls .
+
+    startDockerBot:
+        needs: buildImageBot
+        runs-on: ubuntu-latest
+        env:
+            DISCORD_BOT_PREFIX: ${{ secrets.DISCORD_BOT_PREFIX }}
+            TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        steps:
+            - uses: actions/checkout@v1
+
+            - name: Executing remote command
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  port: ${{ secrets.PORT }}
+                  key: ${{ secrets.SSHKEY }}
+                  envs: DISCORD_BOT_PREFIX,DISCORD_BOT_TOKEN
+                  script: |
+                      docker stop bot-ncls || true && docker rm bot-ncls || true &&
+                      docker run -d --restart unless-stopped --name bot-ncls -e DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN -e DISCORD_BOT_PREFIX=$DISCORD_BOT_PREFIX discord-bot-ncls

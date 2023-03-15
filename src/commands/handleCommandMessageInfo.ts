@@ -3,29 +3,22 @@ import { EmbedBuilder, Message } from "discord.js";
 import { config } from "../config";
 import { client } from "../index";
 
-export const handleMessageHelp = async (message: Message) => {
+export const handleCommandMessageInfo = async (message: Message) => {
     if (message.author.bot || !message.guild) return;
 
     if (!message.content.startsWith(config.prefix)) return;
 
     const content = message.content.toLowerCase();
 
-    if (content.startsWith(`${config.prefix}help`)) {
+    if (content.startsWith(`${config.prefix}info`)) {
         const embed = new EmbedBuilder();
-        embed.setTitle("Functionality of the bot");
+        embed.setTitle("Info about the bot");
         embed.setDescription(
-            "Here is a list of all the functionality, you can use them by typing the prefix before the command"
+            "This bot is made by Nicolas#0719 with 🎧. \
+            It is a bot that is made to help you with your daily tasks. \
+            It uses the GPT-3 model to help you with your problems. \
+            This bot is open source, you can find the code here : https://github.com/ncls-p/discord-ncls-bot"
         );
-        embed.addFields([
-            {
-                name: "help",
-                value: "This command",
-            },
-            {
-                name: "gptphelp",
-                value: "Get help from the GPT-3 model",
-            },
-        ]);
         embed.setAuthor({
             name: client.user?.username || "Unknown",
             iconURL: client.user?.avatarURL() || "",
@@ -35,9 +28,9 @@ export const handleMessageHelp = async (message: Message) => {
             iconURL: client.user?.avatarURL() || "",
         });
         embed.setTimestamp(new Date());
-
-        embed.setColor("Purple");
-        // Send the embed
-        await message.reply({ embeds: [embed] });
+        embed.setImage(
+            "https://cdn.discordapp.com/attachments/1085561432986374286/1085598322380771339/ncls-bot-logo.png"
+        );
+        message.channel.send({ embeds: [embed] });
     }
 };

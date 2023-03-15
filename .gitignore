@@ -1,0 +1,32 @@
+# vscode
+/vscode
+
+# intellij
+/.idea
+
+# vim
+/.swp
+
+# mac
+.DS_Store
+
+# windows
+Thumbs.db
+
+# linux
+*~
+
+# node
+node_modules
+
+# npm
+package-lock.json
+
+# yarn
+yarn.lock
+
+# dist
+dist
+
+# env
+.env

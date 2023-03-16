@@ -1,11 +1,11 @@
 # vscode
-/vscode
+.vscode
 
 # intellij
-/.idea
+.idea
 
 # vim
-/.swp
+.swp
 
 # mac
 .DS_Store

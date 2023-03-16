@@ -43,7 +43,9 @@ jobs:
         runs-on: ubuntu-latest
         env:
             DISCORD_BOT_PREFIX: ${{ secrets.DISCORD_BOT_PREFIX }}
-            TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+            DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+            DISCORD_BOT_CREATOR: ${{ secrets.DISCORD_BOT_CREATOR }}
         steps:
             - uses: actions/checkout@v1
 
@@ -54,7 +56,7 @@ jobs:
                   username: ${{ secrets.USERNAME }}
                   port: ${{ secrets.PORT }}
                   key: ${{ secrets.SSHKEY }}
-                  envs: DISCORD_BOT_PREFIX,DISCORD_BOT_TOKEN
+                  envs: DISCORD_BOT_PREFIX,DISCORD_BOT_TOKEN,OPENAI_API_KEY,DISCORD_BOT_CREATOR
                   script: |
                       docker stop bot-ncls || true && docker rm bot-ncls || true &&
-                      docker run -d --restart unless-stopped --name bot-ncls -e DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN -e DISCORD_BOT_PREFIX=$DISCORD_BOT_PREFIX discord-bot-ncls
+                      docker run -d --restart unless-stopped --name bot-ncls -e DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN -e DISCORD_BOT_PREFIX=$DISCORD_BOT_PREFIX -e OPENAI_API_KEY=$OPENAI_API_KEY -e DISCORD_BOT_CREATOR=$DISCORD_BOT_CREATOR discord-bot-ncls

@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import { Configuration, OpenAIApi } from "openai";
 
+import { client } from "..";
 import { config } from "../config";
 
 export const handleMessageCommands = async (message: Message) => {
@@ -18,6 +19,21 @@ export const handleMessageCommands = async (message: Message) => {
         const openai = new OpenAIApi(configuration);
         message.channel.sendTyping();
 
+        const messages = await message.channel.messages.fetch({
+            limit: 50,
+        });
+        messages.sort((a, b) => {
+            return a.createdTimestamp - b.createdTimestamp;
+        });
+
+        let discussion = "";
+        messages.forEach((message) => {
+            discussion += `author: ${message.author.username} message: ${message.content} \n`;
+        });
+        const botName = client.user?.username;
+
+        console.log(discussion);
+
         try {
             const completion = await openai.createCompletion({
                 model: "text-davinci-003",
@@ -25,7 +41,9 @@ export const handleMessageCommands = async (message: Message) => {
                 If you write code, you need to use the code block markdown and the language you are using.
                 You can use discord emojis, you can use bold, italic, underline, strikethrough, code, spoiler,
                 quote, blockquote, link, image, mention, channel, role.
-                Here is my text, you need to answer in the same language as the following text : ${textToSend}`,
+                In the following text your name is ${botName} and you are in the following discussion : \n ${discussion}
+                You should only write the text you want to send to the discussion and not the author name or other things.
+                In this discussion you need to answer to the following question in the language : ${textToSend}`,
                 max_tokens: 300,
                 top_p: 1,
                 frequency_penalty: 0,

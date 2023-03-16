@@ -22,7 +22,7 @@ export const handleCommandMessageHelp = async (message: Message) => {
                 value: "This command",
             },
             {
-                name: "- Gptphelp",
+                name: "- Gpthelp",
                 value: "Get help from the GPT-3 model",
             },
             {

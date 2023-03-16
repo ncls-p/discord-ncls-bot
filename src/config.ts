@@ -10,6 +10,7 @@ export type MessagesInResponse = {
 export const config = {
     token: process.env.DISCORD_BOT_TOKEN as string,
     prefix: process.env.DISCORD_BOT_PREFIX as string,
+    creator: process.env.DISCORD_BOT_CREATOR as string,
 
     intents: [
         "AutoModerationConfiguration",

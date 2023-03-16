@@ -23,7 +23,7 @@ export const handleMessageCommandPing = async (message: Message) => {
             iconURL: client.user?.avatarURL() || "",
         });
         embed.setFooter({
-            text: "Made by Nicolas#0719 with 🎧",
+            text: `Made by ${config.creator} with 🎧`,
             iconURL: client.user?.avatarURL() || "",
         });
         embed.setTimestamp(new Date());

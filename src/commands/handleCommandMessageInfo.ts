@@ -14,17 +14,17 @@ export const handleCommandMessageInfo = async (message: Message) => {
         const embed = new EmbedBuilder();
         embed.setTitle("Info about the bot");
         embed.setDescription(
-            "This bot is made by Nicolas#0719 with 🎧. \
+            `This bot is made by ${config.creator} with 🎧. \
             It is a bot that is made to help you with your daily tasks. \
             It uses the GPT-3 model to help you with your problems. \
-            This bot is open source, you can find the code here : https://github.com/ncls-p/discord-ncls-bot"
+            This bot is open source, you can find the code here : https://github.com/ncls-p/discord-ncls-bot`
         );
         embed.setAuthor({
             name: client.user?.username || "Unknown",
             iconURL: client.user?.avatarURL() || "",
         });
         embed.setFooter({
-            text: "Made by Nicolas#0719 with 🎧",
+            text: `Made by ${config.creator} with 🎧`,
             iconURL: client.user?.avatarURL() || "",
         });
         embed.setTimestamp(new Date());

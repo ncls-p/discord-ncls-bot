@@ -12,6 +12,7 @@ export const config = {
     prefix: process.env.DISCORD_BOT_PREFIX as string,
     creator: process.env.DISCORD_BOT_CREATOR as string,
     openai_api_key: process.env.OPENAI_API_KEY as string,
+    version: "1.3.O",
 
     intents: [
         "AutoModerationConfiguration",

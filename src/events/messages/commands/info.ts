@@ -19,6 +19,38 @@ export const info = async (message: Message) => {
             It uses the GPT-3 model to help you with your problems. \
             This bot is open source, you can find the code here : https://github.com/ncls-p/discord-ncls-bot`
         );
+        if (client.uptime == null) return;
+        embed.setFields([
+            {
+                name: "Prefix",
+                value: config.prefix,
+                inline: true,
+            },
+            {
+                name: "Creator",
+                value: config.creator,
+                inline: true,
+            },
+            {
+                name: "Version",
+                value: config.version,
+                inline: true,
+            },
+            {
+                name: "Ping",
+                value: `${client.ws.ping}ms`,
+                inline: true,
+            },
+            {
+                name: "uptime",
+                value: `${Math.floor(
+                    client.uptime / 1000 / 60 / 60
+                )}h ${Math.floor(client.uptime / 1000 / 60)}m ${Math.floor(
+                    client.uptime / 1000
+                )}s`,
+                inline: true,
+            },
+        ]);
         embed.setAuthor({
             name: client.user?.username || "Unknown",
             iconURL: client.user?.avatarURL() || "",

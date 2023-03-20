@@ -1,9 +1,9 @@
 import { EmbedBuilder, Message } from "discord.js";
 
-import { config } from "../config";
-import { client } from "../index";
+import { config } from "../../../config";
+import { client } from "../../..";
 
-export const handleCommandMessageHelp = async (message: Message) => {
+export const help = async (message: Message) => {
     if (message.author.bot || !message.guild) return;
 
     if (!message.content.startsWith(config.prefix)) return;
@@ -52,3 +52,5 @@ export const handleCommandMessageHelp = async (message: Message) => {
         await message.reply({ embeds: [embed] });
     }
 };
+
+export default help;

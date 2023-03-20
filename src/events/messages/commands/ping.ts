@@ -1,9 +1,9 @@
 import { EmbedBuilder, Message } from "discord.js";
 
-import { config } from "../config";
-import { client } from "../index";
+import { config } from "../../../config";
+import { client } from "../../..";
 
-export const handleMessageCommandPing = async (message: Message) => {
+export const ping = async (message: Message) => {
     if (message.author.bot || !message.guild) return;
 
     if (!message.content.startsWith(config.prefix)) return;
@@ -30,3 +30,5 @@ export const handleMessageCommandPing = async (message: Message) => {
         message.reply({ embeds: [embed] });
     }
 };
+
+export default ping;

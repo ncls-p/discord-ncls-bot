@@ -1,8 +1,8 @@
 import { EmbedBuilder, Message, TextChannel } from "discord.js";
 
-import { config } from "../config";
+import { config } from "../../../config";
 
-export const handleMessageCommandClear = async (message: Message) => {
+export const clear = async (message: Message) => {
     if (message.author.bot || !message.guild) return;
 
     if (!message.content.startsWith(config.prefix)) return;
@@ -45,3 +45,5 @@ export const handleMessageCommandClear = async (message: Message) => {
         }
     }
 };
+
+export default clear;

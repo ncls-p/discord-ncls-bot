@@ -1,12 +1,14 @@
 import { ActivityType, Client } from "discord.js";
 
 import { config } from "./config";
-import { handleMessageCommandPing } from "./commands/handleMessageCommandPing";
-import { handleMessageCommands as handleMessageCommandsOpenAI } from "./commands/handleMessageCommandsOpenAI";
-import { handleCommandMessageHelp } from "./commands/handleCommandMessageHelp";
-import { handleMessageToResponds } from "./events/messageToResponds";
-import { handleCommandMessageInfo } from "./commands/handleCommandMessageInfo";
-import { handleMessageCommandClear } from "./commands/handleMessageCommandClear";
+import {
+    clear,
+    help,
+    info,
+    helpGpt,
+    ping,
+    toResponds,
+} from "./events/messages";
 
 export const client = new Client({
     intents: config.intents,
@@ -33,12 +35,12 @@ client.on("ready", () => {
     });
 });
 
-client.on("messageCreate", handleMessageToResponds);
+client.on("messageCreate", toResponds);
 
-client.on("messageCreate", handleCommandMessageHelp);
-client.on("messageCreate", handleCommandMessageInfo);
-client.on("messageCreate", handleMessageCommandsOpenAI);
-client.on("messageCreate", handleMessageCommandPing);
-client.on("messageCreate", handleMessageCommandClear);
+client.on("messageCreate", help);
+client.on("messageCreate", info);
+client.on("messageCreate", helpGpt);
+client.on("messageCreate", ping);
+client.on("messageCreate", clear);
 
 client.login(config.token);

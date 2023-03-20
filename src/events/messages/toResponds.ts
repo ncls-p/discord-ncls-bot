@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import { config, MessagesInResponse } from "../config";
+import { config, MessagesInResponse } from "../../config";
 
-export const handleMessageToResponds = (message: Message) => {
+export const toResponds = (message: Message) => {
     if (message.author.bot || !message.guild) return;
 
     const content = message.content.toLowerCase();

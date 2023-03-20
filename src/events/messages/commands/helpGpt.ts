@@ -1,10 +1,10 @@
 import { Message } from "discord.js";
 import { Configuration, OpenAIApi } from "openai";
 
-import { client } from "..";
-import { config } from "../config";
+import { client } from "../../..";
+import { config } from "../../../config";
 
-export const handleMessageCommands = async (message: Message) => {
+export const helpGpt = async (message: Message) => {
     if (message.author.bot || !message.guild) return;
 
     if (!message.content.startsWith(config.prefix)) return;
@@ -59,3 +59,5 @@ export const handleMessageCommands = async (message: Message) => {
         }
     }
 };
+
+export default helpGpt;

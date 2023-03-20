@@ -1,9 +1,9 @@
 import { EmbedBuilder, Message } from "discord.js";
 
-import { config } from "../config";
-import { client } from "../index";
+import { client } from "../../..";
+import { config } from "../../../config";
 
-export const handleCommandMessageInfo = async (message: Message) => {
+export const info = async (message: Message) => {
     if (message.author.bot || !message.guild) return;
 
     if (!message.content.startsWith(config.prefix)) return;
@@ -34,3 +34,5 @@ export const handleCommandMessageInfo = async (message: Message) => {
         message.channel.send({ embeds: [embed] });
     }
 };
+
+export default info;

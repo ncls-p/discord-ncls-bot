@@ -1,11 +1,12 @@
 import { client } from "..";
 import {
-    clear,
-    help,
-    helpGpt,
-    info,
-    ping,
     toResponds,
+    help,
+    info,
+    helpGpt,
+    ping,
+    clear,
+    createChannel,
 } from "../events/messages";
 
 export function getEventsCommands() {
@@ -15,4 +16,5 @@ export function getEventsCommands() {
     client.on("messageCreate", helpGpt);
     client.on("messageCreate", ping);
     client.on("messageCreate", clear);
+    client.on("messageCreate", createChannel);
 }

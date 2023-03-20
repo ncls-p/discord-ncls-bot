@@ -33,6 +33,10 @@ export const help = async (message: Message) => {
                 name: "- Info",
                 value: "Get information about the bot",
             },
+            {
+                name: "- Createchannel",
+                value: "Create a channel only for you and the bot",
+            },
         ]);
         embed.setAuthor({
             name: client.user?.username || "Unknown",

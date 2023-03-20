@@ -31,7 +31,7 @@ export const info = async (message: Message) => {
         embed.setImage(
             "https://cdn.discordapp.com/attachments/1085561432986374286/1085598322380771339/ncls-bot-logo.png"
         );
-        message.channel.send({ embeds: [embed] });
+        message.reply({ embeds: [embed] });
     }
 };
 

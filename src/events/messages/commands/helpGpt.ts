@@ -66,7 +66,8 @@ export const helpGpt = async (message: Message) => {
                 quote, blockquote, link, image, mention, channel, role.
                 In the following text your name is ${botName} and you are in the following discussion : \n ${discussion}
                 You should only write the text you want to send to the discussion and not the author name or other things.
-                In this discussion you need to answer to the following message in the same used language : ${textToSend}`,
+                In this discussion you need to answer to the following message and your message should never 
+                be longer than 300 characters in the same used language that was used : ${textToSend}`,
                 max_tokens: 300,
                 top_p: 1,
                 frequency_penalty: 0,

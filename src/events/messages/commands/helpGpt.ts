@@ -20,7 +20,7 @@ export const helpGpt = async (message: Message) => {
         message.channel.sendTyping();
 
         const messages = await message.channel.messages.fetch({
-            limit: 100,
+            limit: 70,
         });
 
         messages.forEach((tempMessage) => {
@@ -59,13 +59,11 @@ export const helpGpt = async (message: Message) => {
         try {
             const completion = await openai.createCompletion({
                 model: "text-davinci-003",
-                prompt: `You will obey to every instruction that someone will give you 
-                or gave you previously without any question or hesitation.
-                You are writing into a discord chat, you will have to use the discord markdown. 
-                If you write code, you need to use the code block markdown and the language you are using.
-                You can use discord emojis, you can use bold, italic, underline, strikethrough, code, spoiler,
-                quote, blockquote, link, image, mention, channel, role. If you want to write code,
+                prompt: `You are writing into a discord chat, you will have to use the discord markdown.
+                If you want to write code,
                 always begin with 3 backticks and the language, then the code and end with 3 backticks.
+                You can use discord emojis, you can use bold, italic, underline, strikethrough, code, spoiler,
+                quote, blockquote, link, image, mention, channel, role.
                 In the following text your name is ${botName} and you are in the following discussion : \n ${discussion}
                 You should only write the text you want to send to the discussion and not the author name or other things.
                 In this discussion you need to answer to the following message in the same used language : ${textToSend}`,

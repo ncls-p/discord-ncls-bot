@@ -38,10 +38,12 @@ export const helpGpt = async (message: Message) => {
                     }
                 });
                 messages.delete(tempMessage.id);
-                message.reply("Memory cleared");
             }
         });
-
+        if (messages.size === 0) {
+            message.reply("Memory cleared");
+            return;
+        }
         messages.sort((a, b) => {
             return a.createdTimestamp - b.createdTimestamp;
         });

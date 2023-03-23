@@ -26,6 +26,10 @@ export const help = async (message: Message) => {
                 value: "Get help from the GPT-3 model",
             },
             {
+                name: "- Gpthelp forgetAll",
+                value: "Forget all the messages in the channel before the command",
+            },
+            {
                 name: "- Ping",
                 value: "Get the latency of the bot",
             },
@@ -36,6 +40,10 @@ export const help = async (message: Message) => {
             {
                 name: "- Createchannel",
                 value: "Create a channel only for you and the bot",
+            },
+            {
+                name: "- Clear",
+                value: "Clear a number of messages",
             },
         ]);
         embed.setAuthor({

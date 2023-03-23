@@ -7,6 +7,7 @@ Current features of NCLS Bot include:
 ### Commands
 - `help`: Displays the list of available commands
 - `gpthelp`: Provides help from the OpenAI GPT-3 model
+- `Gpthelp forgetAll` Forgets all the messages before the command was sent
 - `ping`: Displays the bot's latency
 - `info`: Displays information about the bot
 - `createchannel`: Creates a private channel for the user and the bot

@@ -20,8 +20,28 @@ export const helpGpt = async (message: Message) => {
         message.channel.sendTyping();
 
         const messages = await message.channel.messages.fetch({
-            limit: 50,
+            limit: 100,
         });
+
+        messages.forEach((tempMessage) => {
+            if (
+                tempMessage.content.startsWith(
+                    `${config.prefix}gpthelp forgetAll`
+                )
+            ) {
+                messages.forEach((messageToDelete) => {
+                    if (
+                        messageToDelete.createdTimestamp <
+                        tempMessage.createdTimestamp
+                    ) {
+                        messages.delete(messageToDelete.id);
+                    }
+                });
+                messages.delete(tempMessage.id);
+                message.reply("Memory cleared");
+            }
+        });
+
         messages.sort((a, b) => {
             return a.createdTimestamp - b.createdTimestamp;
         });

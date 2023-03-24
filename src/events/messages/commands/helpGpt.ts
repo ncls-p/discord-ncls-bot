@@ -20,7 +20,7 @@ export const helpGpt = async (message: Message) => {
         message.channel.sendTyping();
 
         const messages = await message.channel.messages.fetch({
-            limit: 70,
+            limit: 50,
         });
 
         messages.forEach((tempMessage) => {

@@ -19,4 +19,3 @@ client.on("ready", () => {
 getEventsCommands();
 
 client.login(config.token);
-

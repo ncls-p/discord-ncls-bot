@@ -6,7 +6,7 @@
   "author": "nclspierrot@gmail.com",
   "license": "MIT",
   "scripts": {
-    "lint": "prettier -c -w .",
+    "lint": "prettier -c -w src/**/*.ts",
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "serve": "node dist/index.js",

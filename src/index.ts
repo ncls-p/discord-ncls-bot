@@ -5,15 +5,15 @@ import { config } from "./config";
 import { getEventsCommands } from "./utils/getEventsCommands";
 
 export const client = new Client({
-    intents: config.intents,
+  intents: config.intents,
 });
 
 client.on("ready", () => {
-    logLoginLogs();
+  logLoginLogs();
 
-    client.user?.setActivity("Development", {
-        type: ActivityType.Competing,
-    });
+  client.user?.setActivity("Development", {
+    type: ActivityType.Competing,
+  });
 });
 
 getEventsCommands();

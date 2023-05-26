@@ -58,7 +58,7 @@ jobs:
                   username: ${{ secrets.USERNAME }}
                   port: ${{ secrets.PORT }}
                   key: ${{ secrets.SSHKEY }}
-                  envs: DISCORD_BOT_TOKEN,UPTIME_ROBOT_API_KEY
+                  envs: DISCORD_BOT_TOKEN,DISCORD_BOT_CREATOR,DISCORD_BOT_PREFIX,OPENAI_API_KEY
                   script: |
                       cd /home/blury/perso/discord/discord-bot-ncls
                       touch .env
